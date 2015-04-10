@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Places to visit in Monaco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/jQuery.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script type="text/javascript" src="js/knockout-3.2.0.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</head>
+
+<body>
+    <div id="map-canvas"></div>
+    <div id="controls">
+        <div data-bind="visible: !isCollapsed()">
+            <div id="errorMessages" data-bind="visible: errorMessages().length > 0" class="controls">
+                <h4>Error(s) occured when loading the page.</h4>
+                <!-- ko foreach: errorMessages -->
+                <p data-bind="text: $data"></p>
+                <!-- /ko -->
+            </div>
+            <input id="filterInput" class="controls" type="text" placeholder="Filter places" data-bind="
+                    value: keyword,
+                    valueUpdate: 'afterkeydown',
+                    ">
+            <select id="itemsList" class="controls" size="10" data-bind="
+                    foreach: items,
+                    selectedOptions: selectedItems,
+                    ">
+                <!-- ko if: is_visible -->
+                <option data-bind="text: page.title,
+                                   value: $index,
+                                   style: { backgroundImage: 'url(' + imgUrl() + ')'},
+                                   "></option>
+                <!-- /ko -->
+            </select>
+        </div>
+        <div id="toggleList">
+            <button data-bind="click: toggleList, visible: isCollapsed()">
+                <img src="img/expand.png">
+            </button>
+            <button data-bind="click: toggleList, visible: !isCollapsed()">
+                <img src="img/collapse.png">
+            </button>
+        </div>
+    </div>
+
+    <div data-bind="visible: isLoading()">
+        <img id="loadingImg" src="img/loading.gif" alt="">
+    </div>
+
+    <script type="text/html" id="infowindowTemplate">
+        <div class='infowindow'>
+            <h2>{{pageTitle}}</h2>
+            <img src='{{imgUrl}}'/>
+            <div>
+                <p>{{pageExtract}}</p>
+                <a href='{{pageFullUrl}}' target='blank_'>Read more.</a>
+            </div>
+        </div>
+    </script>
+
+</body>
+
+</html>

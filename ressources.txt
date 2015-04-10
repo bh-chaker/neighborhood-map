@@ -1,0 +1,4 @@
+The ressources I used are mainly official documentation of Google Maps and MediaWiki API (for Wikipedia):
+- https://developers.google.com/maps/documentation/javascript/
+- http://www.mediawiki.org/wiki/API:Query
+- https://en.wikipedia.org/wiki/Special:ApiSandbox (very usefull to test the queries on real Wikipedia Data)
