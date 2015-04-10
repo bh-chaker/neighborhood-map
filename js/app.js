@@ -1,8 +1,8 @@
 /*
  * Global Variables
  */
-var wikipedia_api_url = 'https://en.wikipedia.org/w/api.php';
-var places_to_visit = [
+var wikipedia_api_url = 'https://en.wikipedia.org/w/api.php',
+    places_to_visit = [
     "Opéra de Monte-Carlo",
     "Fort Antoine Theatre",
     "Saint Nicholas Cathedral, Monaco",
@@ -13,11 +13,10 @@ var places_to_visit = [
     "Prince's Palace of Monaco",
     "Japanese Garden, Monaco",
     "Jardin Exotique de Monaco",
-];
-
-var map;
-var infowindow;
-var placesList;
+    ],
+    map,
+    infowindow,
+    placesList;
 
 /*
  * Initializer functions
@@ -151,7 +150,7 @@ var MarkerPlace = function(page) {
         infowindow.setContent(infowindowContent);
 
         infowindow.open(map, self.marker);
-    }
+    };
 
     // Attach the displayInfoWindow to the click event of the marker
     google.maps.event.addListener(self.marker, 'click', self.displayInfoWindow);
@@ -164,8 +163,8 @@ var MarkerPlace = function(page) {
         else{
             self.is_visible(false);
         }
-    }
-}
+    };
+};
 
 // PlacesList ViewModel
 var PlacesList = function() {
@@ -190,11 +189,11 @@ var PlacesList = function() {
 
     self.startedLoading = function () {
         self.isLoading(true);
-    }
+    };
 
     self.finishedLoading = function () {
         window.setTimeout(function () {self.isLoading(false);}, 2000);
-    }
+    };
 
     self.filterList = function(keyword) {
         self.items().forEach(function(item) {
@@ -204,7 +203,7 @@ var PlacesList = function() {
 
     self.toggleList = function() {
         self.isCollapsed(!self.isCollapsed());
-    }
+    };
 
     self.keyword.subscribe(function (newValue) {
         self.filterList(newValue);
@@ -231,7 +230,7 @@ $(function() {
     } catch (err) {
         // Display an error message if an exception is thrown
         // while initializing the map
-        placesList.errorMessages.push("Cannot load Google Map.")
+        placesList.errorMessages.push("Cannot load Google Map.");
         placesList.finishedLoading();
     }
 });
