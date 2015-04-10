@@ -211,6 +211,7 @@ var PlacesList = function() {
     });
 
     self.selectedItems.subscribe(function(newValue) {
+        self.toggleList();
         self.items()[newValue[0]].displayInfoWindow();
     });
 };
